@@ -1,0 +1,14 @@
+A)
+
+SELECT Students.FirstName, Students.LastName FROM Students
+INNER JOIN Exams WHERE Students.StudentId = Exams.StudentId AND Exams.Result < 3
+Group BY Students.StudentId HAVING COUNT(*) > 2; 
+
+
+B)
+
+SELECT Students.Group FROM Students
+INNER JOIN (SELECT StudentId FROM Exams 
+           WHERE Result < 3
+           GROUP BY StudentId) Exams ON Students.StudentId = Exams.StudentId
+GROUP BY Students.Group HAVING COUNT(*) > 10;
